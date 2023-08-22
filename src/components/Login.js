@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Login = () => {
 
@@ -22,12 +23,23 @@ const Login = () => {
           //   If success = true then redirect 
           if(json.success){
               //  Save the auth token and redirect
+              swal({
+                title: "Success!",
+                text: "Welcome to iNotebook",
+                icon: "success",
+                button: "Ok",
+              });
               localStorage.setItem('token', json.authtoken);
               navigate("/"); 
             }
             else{
                 // Else Show Alert
-                alert("Invalid Credentials");
+                swal({
+                    title: "Error!",
+                    text: "Invalid Credentials!",
+                    icon: "error",
+                    button: "Ok",
+                  });
             }
             
             

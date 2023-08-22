@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../context/notes/noteContext"
 import Noteitem from './NoteItem';
 import AddNote from './AddNote';
+import swal from 'sweetalert';
 
 const Notes = () => {
     const context = useContext(noteContext);
@@ -17,15 +18,23 @@ const Notes = () => {
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
+        
     }
 
     const handleClick = (e)=>{ 
         editNote(note.id, note.etitle, note.edescription, note.etag)
         refClose.current.click();
+        swal({
+            title: "Success!",
+            text: "Note updated successfully",
+            icon: "success",
+            button: "Ok",
+          });
     }
 
     const onChange = (e)=>{
         setNote({...note, [e.target.name]: e.target.value})
+        
     }
 
     return (

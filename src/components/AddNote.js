@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import noteContext from "../context/notes/noteContext";
+import swal from 'sweetalert';
 
 
 const AddNote = () => {
@@ -9,6 +10,12 @@ const AddNote = () => {
   const handleClick =(e)=>{
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
+    swal({
+      title: "Success!",
+      text: "Note added Successfully",
+      icon: "success",
+      button: "Ok",
+    });
     setNote({title: "", description: "", tag: ""})
   }
   const onChange = (e)=>{
